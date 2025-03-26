@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#252b3a"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal"
+                android:foregroundGravity="center"
+                android:src="@drawable/logo" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="כניסת רשומים"
+                android:textSize="50dp"
+                android:padding="10dp"
+                android:gravity="center"
+                android:textColor="@color/white"/>
+
+            <EditText
+                android:id="@+id/EThospital"
+                android:padding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="שם בית החולים"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="30dp">
+
+            </EditText>
+
+            <EditText
+                android:id="@+id/ETuserName"
+                android:padding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="שם משתמש"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="30dp">
+
+            </EditText>
+
+            <EditText
+                android:id="@+id/ETpassword"
+                android:padding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="סיסמא"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="30dp">
+
+            </EditText>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/BTEnter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20dp"
+                android:padding="10dp"
+                android:text="כניסה"
+                android:backgroundTint="#314356"
+                android:textColor="@color/white"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/signUpRedirectText"
+                android:text="להרשמה לחץ כאן"
+                android:gravity="center"
+                android:padding="8dp"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:backgroundTint="#252b3a"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/doctorLogonRedirectText"
+                android:text="לכניסת רופאים לחץ כאן"
+                android:gravity="center"
+                android:padding="8dp"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"
+                android:backgroundTint="#252b3a"
+                android:textColor="@color/white"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</LinearLayout>
+

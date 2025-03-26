@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "265176681212",
+    "project_id": "cancerproject3",
+    "storage_bucket": "cancerproject3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:265176681212:android:1cf030a44f4d141e6fe579",
+        "android_client_info": {
+          "package_name": "com.example.cancerproject20"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJaiQEJ28_SYmZ5zKKraYtFUj0V58iGi4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

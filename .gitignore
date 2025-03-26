@@ -1,0 +1,10 @@
+# Gradle build directories
+build/
+**/build/
+**/captures/
+**/outputs/
+**/generated/
+
+# Gradle wrapper files
+gradle-wrapper.jar
+gradle-wrapper.properties
