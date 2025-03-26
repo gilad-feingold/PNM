@@ -1,10 +1,11 @@
-# Gradle build directories
+# Ignore Gradle files
+.gradle/
 build/
 **/build/
-**/captures/
-**/outputs/
-**/generated/
 
-# Gradle wrapper files
-gradle-wrapper.jar
-gradle-wrapper.properties
+# Ignore Android Studio files
+.idea/
+*.iml
+
+# Ignore local properties
+local.properties
