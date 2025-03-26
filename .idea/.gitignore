@@ -1,38 +1,12 @@
-# Gradle files
-.gradle/
-build/
-**/build/
-**/captures/
-**/outputs/
-**/generated/
-
-# Android Studio project files
+# Android Studio specific files
 .idea/
+.idea/workspace.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/gradle.xml
+.idea/assetStudio/
+.idea/caches/
+.idea/libraries/
+
+# User-specific files
 *.iml
-
-# Local configuration
-/local.properties
-
-# Dependency caches
-.cxx/
-.externalNativeBuild/
-.cordova/
-node_modules/
-dist/
-
-# Test reports
-/test-results/
-*.log
-
-# Keystore files (Avoid committing keystores)
-*.jks
-*.keystore
-
-# Virtual devices
-*.hprof
-*.avd/
-*.lock
-
-# OS-specific files
-.DS_Store
-Thumbs.db
