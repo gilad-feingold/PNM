@@ -6,7 +6,7 @@ import com.example.cancerproject20.Patient;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Doctor extends Human {
+public class Doctor implements Human {
 
     public static final String FIRSTVALINLIST = "Patients";
 
@@ -31,10 +31,12 @@ public class Doctor extends Human {
     }
 
 
+    @Override
     public String getId() {
         return id;
     }
 
+    @Override
     public String getFullName() {
         return fullName;
     }

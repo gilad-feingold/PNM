@@ -1,7 +1,8 @@
 package com.example.cancerproject20;
 
-public class Human {
-
+public interface Human {
+    String getId();
+    String getFullName();
 
 
 

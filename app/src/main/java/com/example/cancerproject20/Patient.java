@@ -13,7 +13,7 @@ import java.net.PasswordAuthentication;
 import java.time.LocalDate;
 import java.util.Calendar;
 
-public class Patient extends Human{
+public class Patient implements Human{
 
     private String age;
     private String id;
@@ -34,10 +34,11 @@ public class Patient extends Human{
         return age;
     }
 
+    @Override
     public String getId() {
         return id;
     }
-
+    @Override
     public String getFullName() {
         return fullName;
     }
