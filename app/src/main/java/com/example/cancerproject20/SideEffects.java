@@ -76,10 +76,16 @@ public class SideEffects {
             String val = entry.getValue();
             if(val.length() > 2)
                 val = "0";
+            else
+                result.append(entry.getKey()).append(" : ").append(val).append("\n");
 
-            result.append(entry.getKey()).append(" : ").append(val).append("\n");
         }
+        
+
+
         return result.toString().trim(); // Trim to remove the last newline
     }
+
+
 
 }

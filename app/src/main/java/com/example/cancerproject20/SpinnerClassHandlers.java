@@ -6,7 +6,7 @@ import android.widget.AdapterView;
 
 public class SpinnerClassHandlers {
 
-    static String[] classicSpinnerValues = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+    static String[] classicSpinnerValues = {"1 כלל לא", "2", "3", "4", "5", "6", "7", "8", "9", "10 בלתי נסבל "};
     static String[] spinner1Values = {"כאבי ראש", "לא קיים","מעט","פעימות בראש", "צילצולים", "מגרנות", "לא נסבל", "מושבט"};
     static String[] spinner2Values = {"בחילה","אין","מעט", "סחרחורת"};
     static String[] spinner3Values = {"כאב בטן", "אין", "מעט", "קיבוצים", "בילתי נסבל"};

@@ -1,5 +1,9 @@
 package com.example.cancerproject20;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -11,9 +15,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
 import java.util.List;
 
-public class Utils extends SignupActivity{
+public class Utils extends SignupActivity {
 
     public interface ResultCallback {
         void onResult(boolean result);
@@ -172,6 +177,8 @@ public class Utils extends SignupActivity{
 
 
 
+
+
     public static void insertValueAtStartOfArray(String[] oldarr, String[] newarr, String insertValue)
     {
         if(newarr.length - oldarr.length  != 1)
@@ -181,5 +188,54 @@ public class Utils extends SignupActivity{
         for(int i = 0; i < oldarr.length; i++)
             newarr[i+1] = oldarr[i];
     }
+
+
+    public void scheduleDailyReminder(Context context) {
+        if (context == null) {
+            return;
+        }
+
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        if (alarmManager == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, ReminderReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                context,
+                0,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 17); // or for testing: calendar.add(Calendar.MINUTE, 5);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+
+        if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
+            calendar.add(Calendar.DAY_OF_YEAR, 1);
+        }
+
+
+
+        alarmManager.setRepeating(
+                AlarmManager.RTC_WAKEUP,
+                calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY,
+                pendingIntent
+        );
+    }
+
+    public static boolean isElementInStringArray(String[] arr, String value)
+    {
+        for(String element : arr)
+        {
+            if(element.equals(value))
+                return true;
+        }
+        return false;
+    }
+
 
 }

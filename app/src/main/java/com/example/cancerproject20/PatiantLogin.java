@@ -2,8 +2,11 @@ package com.example.cancerproject20;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Objects;
 
 public class PatiantLogin extends AppCompatActivity  {
+
+
 
     public static final String USER_KEY = "USER_KEY";
     public static final String HOSPITAL_KEY = "HOSPITAL_KEY";
@@ -40,6 +45,8 @@ public class PatiantLogin extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patiant_login);
 
+        // Trigger the alarm setup
+        getPremonitions();
 
 
         etHospital = findViewById(R.id.EThospital);
@@ -214,6 +221,33 @@ public class PatiantLogin extends AppCompatActivity  {
             }
         });
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+
+        if (requestCode == 101 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            new Utils().scheduleDailyReminder(this);
+        }
+    }
+
+    private void getPremonitions()
+    {
+        Utils utils = new Utils();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ActivityCompat.checkSelfPermission(PatiantLogin.this, android.Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(PatiantLogin.this,
+                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
+            } else {
+                utils.scheduleDailyReminder(PatiantLogin.this);
+            }
+        } else {
+            utils.scheduleDailyReminder(PatiantLogin.this);
+        }
     }
 
 }

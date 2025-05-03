@@ -4,7 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +19,7 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -33,6 +38,8 @@ public class DoctorControl extends AppCompatActivity {
 
 
     String formattedSideEffect;
+
+    String [] highRisk = {"כאבים בחזה", "כאבי ראש", "קוצר נשמיה"};
 
     public static final String DOCTOR_USER_KEY_ADD = "USER_KEY_ADD";
     public static final String DOCTOR_HOSPITAL_KEY_ADD = "HOSPITAL_KEY_ADD";
@@ -143,17 +150,72 @@ public class DoctorControl extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
-                            ArrayList<String> arrayList = new ArrayList<>();
+                            ArrayList<CharSequence> arrayList = new ArrayList<>();
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+
+
+                                DataSnapshot sides = dataSnapshot.child("m_effects");
+
+                                boolean isRisk = false;
+                                for(DataSnapshot snap : sides.getChildren())
+                                {
+                                    String key = snap.getKey();
+                                    String val = snap.getValue(String.class);
+                                    if(Utils.isElementInStringArray(highRisk, key) && (val.equals(SpinnerClassHandlers.classicSpinnerValues[5]) ||
+                                            val.equals(SpinnerClassHandlers.classicSpinnerValues[6]) ||
+                                            val.equals(SpinnerClassHandlers.classicSpinnerValues[7]) ||
+                                            val.equals(SpinnerClassHandlers.classicSpinnerValues[8]) ||
+                                            val.equals(SpinnerClassHandlers.classicSpinnerValues[9])))
+                                    {
+                                        isRisk = true;
+                                        break;
+                                    }
+                                    else if (val.equals(SpinnerClassHandlers.classicSpinnerValues[7]) ||
+                                            val.equals(SpinnerClassHandlers.classicSpinnerValues[8]) ||
+                                            val.equals(SpinnerClassHandlers.classicSpinnerValues[9]))
+                                        {
+                                            isRisk = true;
+                                            break;
+                                        }
+
+
+                                }
+
                                 String value = dataSnapshot.getKey();
-                                arrayList.add(value);
+
+                                if(isRisk)
+                                {
+                                    SpannableString redDate = new SpannableString(value);
+                                    redDate.setSpan(new ForegroundColorSpan(Color.RED), 0, redDate.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                                    arrayList.add(redDate);
+                                }
+                                else {
+                                    SpannableString whiteDate = new SpannableString(value);
+                                    whiteDate.setSpan(new ForegroundColorSpan(Color.WHITE), 0, whiteDate.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                                    arrayList.add(whiteDate);
+                                }
+
+
+
+
+
+
+
                             }
 
 
-                            String[] vals = new String[arrayList.size()];
-                            Utils.listToArray(arrayList, vals);
-                            ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(DoctorControl.this, R.layout.simple_spinner_item, vals);
-                            adapter.setDropDownViewResource(R.layout.simple_spinner_item);
+
+
+
+
+
+                            /*String[] vals = new String[arrayList.size()];
+                            Utils.listToArray(arrayList, vals);*/
+                            ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(DoctorControl.this, R.layout.date_spinner_item, arrayList);
+                            adapter.setDropDownViewResource(R.layout.date_spinner_item);
                             dates.setAdapter(adapter);
 
                             dates.setEnabled(true);
@@ -195,5 +257,15 @@ public class DoctorControl extends AppCompatActivity {
 
                     }
                 });
+
+
+
+
+
+
     }
+
+
+
+
 }
